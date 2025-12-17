@@ -1,0 +1,23 @@
+.basic-values {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.basic-values div {
+  text-align: center;
+}
+
+.basic-values p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.basic-values .income {
+  color: #4caf50;
+}
+.basic-values .cost {
+  color: #f44336;
+}
