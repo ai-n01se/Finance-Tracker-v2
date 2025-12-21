@@ -1,6 +1,5 @@
-import { entries } from '../store/store';
-
-export const updateBalance = () => {
+import type { FinanceItem } from '../types/main.type';
+export const updateBalance = (entries: FinanceItem[]) => {
   let balance = 0;
   let income = 0;
   let cost = 0;

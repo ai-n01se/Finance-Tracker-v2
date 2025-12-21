@@ -1,9 +1,13 @@
 import './FormForAccount.css';
 import { useState } from 'react';
 import type { FinanceType } from '../../types/main.type';
-import { addNewEntries } from '../../function/addNewEntries';
+import type { FinanceItem } from '../../types/main.type';
 
-export default function FormForAccount() {
+export default function FormForAccount({
+  addEntry,
+}: {
+  addEntry: (newEntry: FinanceItem) => void;
+}) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [financeType, setFinanceType] = useState('income');
@@ -40,7 +44,7 @@ export default function FormForAccount() {
           type='submit'
           id='submit'
           onClick={() => {
-            addNewEntries({
+            addEntry({
               id: Date.now().toString(),
               description,
               type: financeType as FinanceType,

@@ -1,33 +1,22 @@
 import './BasicValuesStyle.css';
 import { updateBalance } from '../../function/updateBalance';
-import { subscribe } from '../../store/store';
-import { useEffect, useState } from 'react';
+import type { FinanceItem } from '../../types/main.type';
 
-export default function BasicValues() {
-  // Створюємо єдиний об'єкт стану для зручності
-  const [stats, setStats] = useState(updateBalance());
-
-  useEffect(() => {
-    const unsubscribe = subscribe(() => {
-      setStats(updateBalance());
-    });
-
-    return () => unsubscribe();
-  }, []);
-
+export default function BasicValues({ entries }: { entries: FinanceItem[] }) {
+  const { balance, income, cost } = updateBalance(entries);
   return (
     <section className='basic-values'>
       <div className='cost'>
         <h2>Cost</h2>
-        <p>{stats.cost}</p>
+        <p>{cost}</p>
       </div>
       <div className='balance'>
         <h2>Balance</h2>
-        <p>{stats.balance}</p>
+        <p>{balance}</p>
       </div>
       <div className='income'>
         <h2>Income</h2>
-        <p>{stats.income}</p>
+        <p>{income}</p>
       </div>
     </section>
   );
