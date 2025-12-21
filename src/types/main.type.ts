@@ -1,6 +1,8 @@
 export type FinanceItem = {
   id: string;
   description: string;
-  type: 'income' | 'expense';
+  type: FinanceType;
   amount: number;
 };
+
+export type FinanceType = 'income' | 'expense';
