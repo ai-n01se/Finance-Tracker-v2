@@ -3,6 +3,9 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding-top: 40px;
 }
 
 .form-for-account form {
@@ -29,4 +32,12 @@
   background-color: #0df1ac;
   color: #1a1a1a;
   font-weight: bold;
+}
+
+.form-for-account-error {
+  color: #ff4d4d;
+  margin-bottom: 10px;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
 }
