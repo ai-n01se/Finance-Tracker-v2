@@ -6,8 +6,9 @@ export const useEntries = () => {
   const [entries, setEntries] = useState<FinanceItem[]>([]);
 
   const addEntry = (newEntry: FinanceItem) => {
-    setEntries((prevEntries) => [...prevEntries, newEntry]);
-    saveEntriesToLocalStorage('financeEntries', [...entries, newEntry]);
+    const updatedEntries = [...entries, newEntry];
+    setEntries(updatedEntries);
+    saveEntriesToLocalStorage('financeEntries', updatedEntries);
   };
 
   const addEntryWithLocalStorage = (newEntry: FinanceItem[]) => {
