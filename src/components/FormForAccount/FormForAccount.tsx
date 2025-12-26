@@ -1,7 +1,8 @@
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import type { FinanceItem } from '../../types/main.type';
 import './FormForAccount.css';
-import { useState } from 'react';
-import { type FinanceType, type FinanceItem } from '../../types/main.type';
 import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
 import { validateEntry } from '../../hook/hookValidateEntry';
 import FormForAccountError from './FormForAccountError/FormForAccountError';
 
@@ -10,68 +11,55 @@ export default function FormForAccount({
 }: {
   addEntry: (newEntry: FinanceItem) => void;
 }) {
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
-  const [financeType, setFinanceType] = useState<FinanceType>('income');
+  const { register, handleSubmit, resetField } = useForm<FinanceItem>();
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const onSubmit: SubmitHandler<FinanceItem> = (data) => {
+    const newEntry: FinanceItem = {
+      id: uuid(),
+      description: data.description,
+      amount: parseFloat(data.amount + ''),
+      type: data.type,
+    };
+
+    const result = validateEntry(newEntry);
+
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      setErrors({
+        description: fieldErrors.description?.[0] || '',
+        amount: fieldErrors.amount?.[0] || '',
+      });
+      return;
+    }
+
+    addEntry(newEntry);
+    resetField('description');
+    resetField('amount');
+    setErrors({});
+  };
 
   return (
     <section className='form-for-account'>
       <FormForAccountError errors={errors} />
-      <form action='finance_form' onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type='text'
-          name='description'
+          placeholder='description'
           id='description'
-          placeholder='Description'
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          {...register('description')}
         />
         <input
           type='number'
-          name='amount'
-          id='amount'
           placeholder='amount'
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
           min={0}
+          {...register('amount')}
         />
-        <select
-          name='finance_type'
-          id='finance_type'
-          value={financeType}
-          onChange={(e) => setFinanceType(e.target.value as FinanceType)}>
+        <select defaultValue={'income'} {...register('type')}>
           <option value='income'>Income</option>
           <option value='expense'>Expense</option>
         </select>
-        <button
-          type='submit'
-          id='submit'
-          onClick={() => {
-            const handleSubmitEntry: FinanceItem = {
-              id: uuid(),
-              description,
-              type: financeType as FinanceType,
-              amount: parseFloat(amount),
-            };
-
-            const result = validateEntry(handleSubmitEntry);
-
-            if (!result.success) {
-              const fieldErrors = result.error.flatten().fieldErrors;
-              setErrors({
-                description: fieldErrors.description?.[0] || '',
-                amount: fieldErrors.amount?.[0] || '',
-              });
-              return;
-            }
-            addEntry(result.data);
-            setDescription('');
-            setAmount('');
-            setErrors({});
-          }}>
-          Add
-        </button>
+        <input type='submit' id='submit' value={'Add'} />
       </form>
     </section>
   );

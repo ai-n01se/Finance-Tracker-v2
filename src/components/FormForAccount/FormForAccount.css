@@ -13,14 +13,17 @@
 }
 
 .form-for-account input,
-.form-for-account select,
-.form-for-account button {
+.form-for-account select {
   border: 2px solid #0df1ac;
   padding: 7px 15px;
   font-size: 14px;
   background-color: #1a1a1a;
   color: #ffffff;
   display: block;
+}
+
+.form-for-account select {
+  cursor: pointer;
 }
 
 #description {
@@ -32,6 +35,7 @@
   background-color: #0df1ac;
   color: #1a1a1a;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .form-for-account-error {
