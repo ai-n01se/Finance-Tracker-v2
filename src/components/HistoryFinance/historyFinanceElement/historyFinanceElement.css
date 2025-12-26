@@ -1,0 +1,11 @@
+.history-finance-li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid #333333;
+  transition: all 0.3s ease;
+}
+
+.history-finance-li:hover {
+  background-color: #2a2a2a;
+}
