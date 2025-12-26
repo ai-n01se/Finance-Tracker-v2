@@ -1,5 +1,5 @@
 import './BasicValuesStyle.css';
-import { updateBalance } from '../../function/updateBalance';
+import { updateBalance } from '../../utils/updateBalance';
 import type { FinanceItem } from '../../types/main.type';
 
 export default function BasicValues({ entries }: { entries: FinanceItem[] }) {

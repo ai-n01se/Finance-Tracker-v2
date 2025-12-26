@@ -44,6 +44,16 @@ export default function FormForAccount({
           type='submit'
           id='submit'
           onClick={() => {
+            if (
+              !description ||
+              !amount ||
+              !financeType ||
+              description === '' ||
+              parseFloat(amount) <= 0 ||
+              amount === '' ||
+              description.length <= 2
+            )
+              return;
             addEntry({
               id: Date.now().toString(),
               description,
