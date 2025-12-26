@@ -7,7 +7,7 @@ export const FinanceItemSchema = z.object({
     .min(3, 'Description must be at least 3 characters long')
     .max(100, 'Description must be less than 100 characters long'),
   type: z.enum(['income', 'expense']),
-  amount: z
+  amount: z.coerce
     .number()
     .positive('Amount must be a positive number')
     .min(0.01, 'Amount must be at least 0.01')
