@@ -5,7 +5,7 @@ import type { FinanceItem } from '../../types/main.type';
 export default function BasicValues({ entries }: { entries: FinanceItem[] }) {
   const { balance, income, cost } = updateBalance(entries);
   return (
-    <section className='basic-values'>
+    <section className='basic-values '>
       <div className='cost'>
         <h2>Cost</h2>
         <p>{cost}</p>
