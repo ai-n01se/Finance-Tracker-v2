@@ -4,7 +4,7 @@ export default function FormForAccountError({
   errors: Record<string, string>;
 }) {
   return (
-    <div className='form-for-account-error'>
+    <div className=' absolute top-[-40px] text-xs text-red-500 '>
       {errors.description && <p>{errors.description}</p>}
       {errors.amount && <p>{errors.amount}</p>}
     </div>
