@@ -1,6 +1,5 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { FinanceItem } from '../../types/main.type';
-import './FormForAccount.css';
 import { v4 as uuid } from 'uuid';
 import { useState } from 'react';
 import { validateEntry } from '../../hook/hookValidateEntry';
@@ -40,26 +39,38 @@ export default function FormForAccount({
   };
 
   return (
-    <section className='form-for-account'>
+    <section className=' container px-2 flex w-full justify-center items-center col-auto relative'>
       <FormForAccountError errors={errors} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='flex justify-center items-center text-md w-full'>
         <input
           type='text'
           placeholder='description'
           id='description'
           {...register('description')}
+          className='border-2 border-accent px-3 rounded-l-2xl py-0.5 w-1/3 min-w-24'
         />
         <input
           type='number'
           placeholder='amount'
           min={0}
           {...register('amount')}
+          className='border-2 border-accent px-3 py-0.5 w-1/6 min-w-12 box-border '
         />
-        <select defaultValue={'income'} {...register('type')}>
+        <select
+          defaultValue={'income'}
+          {...register('type')}
+          className='border-2 border-accent px-3 py-0.5 box-border rounded-r-lg cursor-pointer'>
           <option value='income'>Income</option>
           <option value='expense'>Expense</option>
         </select>
-        <input type='submit' id='submit' value={'Add'} />
+        <input
+          type='submit'
+          id='submit'
+          value={'Add'}
+          className='bg-accent text-black-300 px-3 border-2 py-0.5 border-black-100 rounded-r-2xl rounded-l-lg ml-0.5 text-base font-medium hover:border-accent transition-all ease-in-out cursor-pointer'
+        />
       </form>
     </section>
   );
