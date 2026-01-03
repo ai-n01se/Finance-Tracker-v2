@@ -2,22 +2,14 @@ import BasicValues from './components/BasicValues/BasicValues';
 import FormForAccount from './components/FormForAccount/FormForAccount';
 import HistoryFinance from './components/HistoryFinance/HistoryFinance';
 import './App.css';
-import { useEntries } from './store/store';
-import { useEffect } from 'react';
-import { loadEntriesFromLocalStorage } from './utils/localStorage';
+import { useEntriesStore } from './store/zustand';
 
 function App() {
-  const { entries, addEntry, addEntryWithLocalStorage } = useEntries();
-
-  useEffect(() => {
-    const loadedEntries = loadEntriesFromLocalStorage('financeEntries');
-    if (loadedEntries) {
-      addEntryWithLocalStorage(loadedEntries);
-    }
-  }, []);
+  const entries = useEntriesStore((state) => state.entries);
+  const addEntry = useEntriesStore((state) => state.addEntries);
 
   return (
-    <div className='main'>
+    <div className='flex w-full h-full flex-col gap-10 items-center'>
       <BasicValues entries={entries} />
       <FormForAccount addEntry={addEntry} />
       <HistoryFinance entries={entries} />
