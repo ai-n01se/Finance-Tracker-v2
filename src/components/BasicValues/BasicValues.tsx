@@ -8,7 +8,7 @@ export default function BasicValues({ entries }: { entries: FinanceItem[] }) {
       <div className='text-center text-red-500'>
         <h2>Cost</h2>
         <p className='border-2 border-black-100 rounded-2xl min-w-32 p-1 bg-black-200'>
-          -{cost}
+          {cost}
         </p>
       </div>
       <div className='text-center'>
@@ -20,7 +20,7 @@ export default function BasicValues({ entries }: { entries: FinanceItem[] }) {
       <div className='text-center text-green-500'>
         <h2>Income</h2>
         <p className='border-2 border-black-100 rounded-2xl min-w-32 p-1 bg-black-200'>
-          +{income}
+          {income}
         </p>
       </div>
     </section>
