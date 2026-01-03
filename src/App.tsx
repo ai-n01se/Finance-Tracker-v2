@@ -5,13 +5,12 @@ import './App.css';
 import { useEntriesStore } from './store/zustand';
 
 function App() {
-  const entries = useEntriesStore((state) => state.entries);
-  const addEntry = useEntriesStore((state) => state.addEntries);
+  const { entries, addEntries } = useEntriesStore();
 
   return (
     <div className='flex w-full h-full flex-col gap-10 items-center'>
       <BasicValues entries={entries} />
-      <FormForAccount addEntry={addEntry} />
+      <FormForAccount addEntry={addEntries} />
       <HistoryFinance entries={entries} />
     </div>
   );
