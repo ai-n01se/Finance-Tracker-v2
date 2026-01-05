@@ -30,7 +30,7 @@ export default function HistoryFinanceLi({ item }: { item: FinanceItem }) {
         {item.type}
         <div
           className='text-xl cursor-pointer'
-          onClick={() => deleteEntry({ id: item.id })}>
+          onClick={() => deleteEntry(item.id)}>
           <MdDelete />
         </div>
       </p>

@@ -6,7 +6,7 @@ type Store = {
   entries: FinanceItem[];
 };
 
-type FinanceItemId = Pick<FinanceItem, 'id'>;
+type FinanceItemId = FinanceItem['id'];
 
 type Actions = {
   addEntry: (qty: FinanceItem) => void;
@@ -24,7 +24,7 @@ export const useEntriesStore = create<Store & Actions>()(
 
       deleteEntry: (id: FinanceItemId) =>
         set((state) => ({
-          entries: state.entries.filter((e) => e.id !== id.id),
+          entries: state.entries.filter((e) => e.id !== id),
         })),
 
       clearEntries: () => set(() => ({ entries: [] })),
