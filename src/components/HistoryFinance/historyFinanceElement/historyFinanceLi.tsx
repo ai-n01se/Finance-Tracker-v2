@@ -1,5 +1,4 @@
 import type { FinanceItem } from '../../../types/main.type';
-import { MdEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
 import { useEntriesStore } from '../../../store/zustand';
 
@@ -27,11 +26,8 @@ export default function HistoryFinanceLi({ item }: { item: FinanceItem }) {
       <p className=' border-r-2 border-black-100 text-center '>
         {item.description}
       </p>
-      <p className='flex items-center justify-end gap-2'>
+      <p className='flex items-center justify-end gap-4'>
         {item.type}
-        <div className='text-xl ml-4 cursor-pointer'>
-          <MdEdit />
-        </div>
         <div
           className='text-xl cursor-pointer'
           onClick={() => deleteEntry({ id: item.id })}>
