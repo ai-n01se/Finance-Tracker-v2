@@ -14,5 +14,7 @@ export const FinanceItemSchema = z.object({
     .max(1000000, 'Amount must be less than 1,000,000'),
 });
 
+
+
 export type FinanceItem = z.infer<typeof FinanceItemSchema>;
 export type FinanceType = 'income' | 'expense';

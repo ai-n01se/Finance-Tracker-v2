@@ -6,16 +6,28 @@ type Store = {
   entries: FinanceItem[];
 };
 
+type FinanceItemId = Pick<FinanceItem, 'id'>;
+
 type Actions = {
-  addEntries: (qty: FinanceItem) => void;
+  addEntry: (qty: FinanceItem) => void;
+  deleteEntry: (id: FinanceItemId) => void;
+  clearEntries: () => void;
 };
 
 export const useEntriesStore = create<Store & Actions>()(
   persist(
     (set) => ({
       entries: [],
-      addEntries: (obj: FinanceItem) =>
+
+      addEntry: (obj: FinanceItem) =>
         set((state) => ({ entries: [obj, ...state.entries] })),
+
+      deleteEntry: (id: FinanceItemId) =>
+        set((state) => ({
+          entries: state.entries.filter((e) => e.id !== id.id),
+        })),
+
+      clearEntries: () => set(() => ({ entries: [] })),
     }),
     {
       name: 'finance-entries',
