@@ -14,7 +14,19 @@ export const FinanceItemSchema = z.object({
     .max(1000000, 'Amount must be less than 1,000,000'),
 });
 
-
+export const UserItemSchema = z.object({
+  id: z.uuid(),
+  name: z
+    .string()
+    .min(2, 'Name must be at least 2 characters long')
+    .max(100, 'Name must be less than 100 characters long'),
+  password: z
+    .string()
+    .min(6, 'Password must be at least 6 characters long')
+    .max(100, 'Password must be less than 100 characters long'),
+  email: z.string().email('Invalid email address'),
+});
 
 export type FinanceItem = z.infer<typeof FinanceItemSchema>;
 export type FinanceType = 'income' | 'expense';
+export type UserItem = z.infer<typeof UserItemSchema>;

@@ -1,18 +1,11 @@
-import BasicValues from './components/BasicValues/BasicValues';
-import FormForAccount from './components/FormForAccount/FormForAccount';
-import HistoryFinance from './components/HistoryFinance/HistoryFinance';
-import { useEntriesStore } from './store/zustand';
+import { useUserStore } from './store/zustand';
+import MainApp from './pages/MainApp';
+import Register from './pages/Register';
 
 function App() {
-  const { entries, addEntry } = useEntriesStore();
+  const { user } = useUserStore();
 
-  return (
-    <div className='flex w-full h-full flex-col gap-10 items-center'>
-      <BasicValues entries={entries} />
-      <FormForAccount addEntry={addEntry} />
-      <HistoryFinance />
-    </div>
-  );
+  return user ? <MainApp /> : <Register />;
 }
 
 export default App;
